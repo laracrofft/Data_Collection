@@ -20,6 +20,11 @@ class LaraparserPipeline:
         item['max_salary'] = final_salary[1]
         del item['salary']
 
+	final_salary_sj = self.process_salary_sj(item['salary'])
+        item['min_salary'] = final_salary_sj[0]
+        item['max_salary'] = final_salary_sj[1]
+        del item['salary']
+
         collection = self.mongo_base[spider.name]
         collection.insert_one(item)
 
